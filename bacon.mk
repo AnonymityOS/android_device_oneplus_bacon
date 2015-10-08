@@ -230,6 +230,31 @@ ifneq ($(QCPATH),)
 PRODUCT_BOOT_JARS += WfdCommon
 endif
 
+# Proprietary blobs, not automatically included in AOSP builds
+PRODUCT_PACKAGES += \
+    com.qualcomm.location \
+    qcrilmsgtunnel \
+    PPPreference \
+    QuickBoot \
+    shutdownlistener \
+    TimeService
+
+PRODUCT_PACKAGES += \
+    libHevcSwDecoder \
+    liblisten \
+    libmm-abl \
+    libtime_genoff \
+    libTimeService \
+    libqmi \
+    libmdmdetect \
+    libqmiservices \
+    libidl \
+    libqcci_legacy \
+    libdiag \
+    libqmi_client_qmux \
+    libdsutils \
+    libwpa_qmi_eap_proxy
+
 # Recovery
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     $(LOCAL_PATH)/bacon
