@@ -18,11 +18,6 @@ ifneq ($(QCPATH),)
 $(call inherit-product-if-exists, $(QCPATH)/common/config/device-vendor.mk)
 endif
 
-LOCAL_KERNEL := device/oneplus/bacon-kernel/zImage-dtb
-
-PRODUCT_COPY_FILES := \
-    $(LOCAL_KERNEL):kernel
-
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
