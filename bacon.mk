@@ -227,7 +227,6 @@ endif
 
 # Proprietary blobs, not automatically included in AOSP builds
 PRODUCT_PACKAGES += \
-#    com.qualcomm.location \
     qcrilmsgtunnel \
     PPPreference \
     QuickBoot \
