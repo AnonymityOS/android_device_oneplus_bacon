@@ -85,6 +85,9 @@ COMMON_GLOBAL_CFLAGS += -DOPPO_CAMERA_HARDWARE
 # Charger
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
 
+# Android native DT2W
+TARGET_TAP_TO_WAKE_NODE := "/proc/touchpanel/double_tap_enable"
+
 # Enable transparent compression in the build
 # TARGET_TRANSPARENT_COMPRESSION_METHOD := lz4
 
