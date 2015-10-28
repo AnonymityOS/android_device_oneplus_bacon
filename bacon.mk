@@ -28,6 +28,10 @@ PRODUCT_CHARACTERISTICS := nosdcard
 PRODUCT_PACKAGES += \
     init.qcom.bt.sh
 
+# USB mode handler
+PRODUCT_PACKAGES += \
+    init.usbmode.sh
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     libinit_bacon \
