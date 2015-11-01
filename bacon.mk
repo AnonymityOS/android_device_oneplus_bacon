@@ -76,8 +76,7 @@ PRODUCT_PACKAGES += \
     libboringssl-compat
 
 # Camera
-PRODUCT_PACKAGES += \
-    camera.bacon
+#PRODUCT_PACKAGES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     media.stagefright.codecremote=false
