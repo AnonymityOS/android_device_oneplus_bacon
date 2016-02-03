@@ -81,4 +81,3 @@ persist.sys.usb.config=mtp,adb
 
 # Wifi
 wifi.interface=wlan0
-wifi.supplicant_scan_interval=15
