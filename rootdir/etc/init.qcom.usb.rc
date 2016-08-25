@@ -33,40 +33,34 @@ on boot
     write /sys/class/android_usb/android0/f_rndis/vendorID 22D9
     write /sys/class/android_usb/android0/f_rndis/wceis 1
 
-# Standard Android USB modes, wrapped to prevent kernel panic
-# caused by immediate change in USB state after ADB stop/start
-on property:sys.usb.config=charging
-    exec /init.usbmode.sh
-
-on property:sys.usb.config=charging,adb
-    exec /init.usbmode.sh
-
 on property:sys.usb.config=mtp
-    exec /init.usbmode.sh
+    stop adbd
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 05C6
+    write /sys/class/android_usb/android0/idProduct 6764
+    write /sys/class/android_usb/android0/functions mtp
+    write /sys/class/android_usb/android0/enable 1
+    setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=mtp,adb
-    exec /init.usbmode.sh
-
-on property:sys.usb.config=rndis
-    exec /init.usbmode.sh
+    stop adbd
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 05C6
+    write /sys/class/android_usb/android0/idProduct 6765
+    write /sys/class/android_usb/android0/functions mtp,adb
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=rndis,adb
-    exec /init.usbmode.sh
-
-on property:sys.usb.config=ptp
-    exec /init.usbmode.sh
-
-on property:sys.usb.config=ptp,adb
-    exec /init.usbmode.sh
-
-on property:sys.usb.config=midi
-    exec /init.usbmode.sh
-
-on property:sys.usb.config=midi,adb
-    exec /init.usbmode.sh
-
-on property:sys.usb.config=adb
-    exec /init.usbmode.sh
+    stop adbd
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 05C6
+    write /sys/class/android_usb/android0/idProduct 6766
+    write /sys/class/android_usb/android0/functions rndis,adb
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=mass_storage,adb
     stop adbd
@@ -84,6 +78,23 @@ on property:sys.usb.config=mass_storage
     write /sys/class/android_usb/android0/idVendor 05C6
     write /sys/class/android_usb/android0/idProduct 6768
     write /sys/class/android_usb/android0/functions mass_storage
+    write /sys/class/android_usb/android0/enable 1
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=adb
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 05C6
+    write /sys/class/android_usb/android0/idProduct 6769
+    write /sys/class/android_usb/android0/functions adb
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=rndis
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 05C6
+    write /sys/class/android_usb/android0/idProduct 676A
+    write /sys/class/android_usb/android0/functions rndis
     write /sys/class/android_usb/android0/enable 1
     setprop sys.usb.state ${sys.usb.config}
 
@@ -130,6 +141,26 @@ on property:sys.usb.config=diag,diag_mdm,serial_hsic,serial_tty,rmnet_hsic,mass_
     start adbd
     setprop sys.usb.state ${sys.usb.config}
 
+#added some configs for support ptp and cdrom by Xinhua.Song 2014-05-10    
+on property:sys.usb.config=ptp
+    stop adbd
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 05C6
+    write /sys/class/android_usb/android0/idProduct 6771
+    write /sys/class/android_usb/android0/functions ptp
+    write /sys/class/android_usb/android0/enable 1
+    setprop sys.usb.state ${sys.usb.config}
+
+on property:sys.usb.config=ptp,adb
+    stop adbd
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 05C6
+    write /sys/class/android_usb/android0/idProduct 6772
+    write /sys/class/android_usb/android0/functions ptp,adb
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+
 on property:sys.usb.config=mtp,mass_storage
     stop adbd
     write /sys/class/android_usb/android0/enable 0
@@ -162,7 +193,27 @@ on property:sys.usb.config=rndis,diag,adb
     start adbd
     setprop sys.usb.state ${sys.usb.config}
 
-#add a config for default case by Xinhua.Song 2014-05-10 
+# USB midi configuration
+on property:sys.usb.config=midi
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 05C6
+    write /sys/class/android_usb/android0/idProduct 6776
+    write /sys/class/android_usb/android0/functions ${sys.usb.config}
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+
+# USB midi configuration, with adb
+on property:sys.usb.config=midi,adb
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 05C6
+    write /sys/class/android_usb/android0/idProduct 6777
+    write /sys/class/android_usb/android0/functions ${sys.usb.config}
+    write /sys/class/android_usb/android0/enable 1
+    start adbd
+    setprop sys.usb.state ${sys.usb.config}
+
+#add a config for default case by Xinhua.Song 2014-05-10
 on property:sys.usb.config=diag,serial_smd,serial_tty,rmnet_bam,mass_storage,adb
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/iSerial 0123456789ABCDEF
