@@ -188,7 +188,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     NfcNci \
     Tag \
-    nfc_nci.pn54x.default \
+    nfc_nci.bacon \
     com.android.nfc_extras
 
 PRODUCT_COPY_FILES += \
