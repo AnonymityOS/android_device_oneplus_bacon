@@ -345,7 +345,11 @@ static int camera_set_parameters(struct camera_device *device,
     if (!device)
         return -EINVAL;
 
-    return VENDOR_CALL(device, set_parameters, params);
+    CameraParameters2 cparams;
+    cparams.unflatten(String8(params));
+    cparams.dump();
+    cparams.set("hdr-need-1x", "false");
+    return VENDOR_CALL(device, set_parameters, strdup(cparams.flatten().string()));
 }
 
 static char *camera_get_parameters(struct camera_device *device)
