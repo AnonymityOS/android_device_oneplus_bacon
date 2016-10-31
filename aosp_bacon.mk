@@ -32,6 +32,10 @@ PRODUCT_DEVICE := bacon
 PRODUCT_MANUFACTURER := OnePlus
 PRODUCT_MODEL := A0001
 
+PRODUCT_PACKAGES += \
+    Launcher3 \
+    Camera2
+
 PRODUCT_GMS_CLIENTID_BASE := android-oneplus
 
 PRODUCT_BRAND := oneplus
