@@ -11,6 +11,7 @@ ro.qualcomm.cabl=0
 
 # Camera
 camera2.portability.force_api=1
+camera.hal1.packagelist=com.snapchat.android
 
 # Display
 ro.sf.lcd_density=480
