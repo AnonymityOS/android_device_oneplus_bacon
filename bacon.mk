@@ -78,9 +78,6 @@ PRODUCT_PACKAGES += \
 # Camera
 #PRODUCT_PACKAGES += \
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    media.stagefright.codecremote=false
-
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
