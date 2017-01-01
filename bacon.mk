@@ -94,6 +94,14 @@ $(call inherit-product-if-exists, frameworks/native/build/phone-xhdpi-2048-hwui-
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
+# DU Utils Library
+PRODUCT_BOOT_JARS += \
+    org.dirtyunicorns.utils
+
+# DU Utils Library
+PRODUCT_PACKAGES += \
+    org.dirtyunicorns.utils
+
 # Filesystem config (android_filesystem_config.h)
 PRODUCT_PACKAGES += \
     fs_config_files
