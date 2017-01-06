@@ -172,6 +172,9 @@ TARGET_NO_RPC := true
 # SELinux
 #include device/qcom/sepolicy/sepolicy.mk
 
+# SDClang
+include device/qcom/common/common.mk
+
 #BOARD_SEPOLICY_DIRS += \
 #    $(PLATFORM_PATH)/sepolicy
 
