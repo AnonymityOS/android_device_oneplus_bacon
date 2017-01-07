@@ -35,6 +35,7 @@ PRODUCT_MODEL := A0001
 PRODUCT_PACKAGES += \
     Launcher3 \
     Camera2 \
+    Eleven \
     masquerade
 
 PRODUCT_GMS_CLIENTID_BASE := android-oneplus
